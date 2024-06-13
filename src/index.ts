@@ -62,13 +62,14 @@ interface ValidationResult {
 }
 
 
-export async function validateFolder(options: ValidateLinksOptions): Promise<ValidationResult> {
+export default async function validateFolder(options: ValidateLinksOptions): Promise<ValidationResult> {
     // glob everything under the dir *.html
     // iterate each file and print 
     const startTime = performance.now();
+    const normalizedDir = options.dir.replace(/\/$/, '');
 
-    const files = glob.sync(`${options.dir}/**/*.html`);
-    const images = glob.sync(`${options.dir}/**/*.{${IMG_TYPES.join(',')}}`);
+    const files = glob.sync(`${normalizedDir}/**/*.html`);
+    const images = glob.sync(`${normalizedDir}/**/*.{${IMG_TYPES.join(',')}}`);
 
     const onInvalidLink = options.onInvalidLink || ((_) => { });
     const onInvalidImage = options.onInvalidImage || ((_) => { });
@@ -78,12 +79,12 @@ export async function validateFolder(options: ValidateLinksOptions): Promise<Val
     let siteDb: SiteDB = {
         pages: pageDb,
         errors: [],
-        images: new Set(images.map((img) => img.replace(options.dir, ''))),
+        images: new Set(images.map((img) => img.replace(normalizedDir, ''))),
     };
 
     await Promise.all(files.map(async (file) => {
-        const relativeFile = file.replace(options.dir, '/').replace('//', '/').replace("/index.html", '/');
-        const fileMetadata = await loadFile(options.dir, file);
+        const relativeFile = file.replace(normalizedDir, '/').replace('//', '/').replace("/index.html", '/');
+        const fileMetadata = await loadFile(normalizedDir, file);
         pageDb.set(relativeFile, fileMetadata);
     }))
 

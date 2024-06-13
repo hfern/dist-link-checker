@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 
-import { validateFolder } from '../src';
+import validateFolder from '../src';
 
 const fixtureDir = __dirname + "/fixtures";
 
