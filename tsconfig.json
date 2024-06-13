@@ -1,8 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es2022",
-        "moduleResolution": "node",
-        "esModuleInterop": true
-        // "downlevelIteration": true
+        "target": "ES2022",
+        "moduleResolution": "Node",
     }
 }

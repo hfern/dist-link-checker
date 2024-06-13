@@ -157,7 +157,7 @@ async function loadFile(dir: string, file: string): Promise<FileMetadata> {
 }
 
 
-async function getOutgoingLinks(hast): Promise<Set<string>> {
+async function getOutgoingLinks(hast: any): Promise<Set<string>> {
     const anchorElements = selectAll('a[href]', hast);
     let links = new Set<string>();
 
@@ -178,7 +178,7 @@ async function getOutgoingLinks(hast): Promise<Set<string>> {
     return links;
 }
 
-async function getAnchors(hast): Promise<Set<string>> {
+async function getAnchors(hast: any): Promise<Set<string>> {
     const anchorElements = selectAll('*[id]', hast);
     let anchors = new Set<string>();
 
@@ -192,7 +192,7 @@ async function getAnchors(hast): Promise<Set<string>> {
     return anchors;
 }
 
-async function getImages(hast): Promise<Set<string>> {
+async function getImages(hast: any): Promise<Set<string>> {
     const imgElements = selectAll('img[src]', hast);
     let images = new Set<string>();
 
