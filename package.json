@@ -1,6 +1,6 @@
 {
   "name": "dist-link-checker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "scripts": {
     "build": "tsup",
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "tsup": "^8.1.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
   },
@@ -21,7 +22,6 @@
   "dependencies": {
     "glob": "^10.4.1",
     "hast-util-from-html": "^2.0.1",
-    "hast-util-select": "^6.0.2",
-    "tsup": "^8.1.0"
+    "hast-util-select": "^6.0.2"
   }
 }
